@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+}
+body{
+    background-color:#17273D;
+}
+.main-container {
+    height: 100vh;
+    width: 100%;
+  }
+  .form-container {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #17273D;
+  }
+  
+  .login-form span {
+    display: block;
+    margin-bottom: 12px;
+    color: #3D5872;
+    text-align: left;
+    font-weight: 600;
+  }
+  .btn{
+    background-color: #3D5872;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .btn:hover {
+    background-color: #17273D;
+  }
+  .login-form select{
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    color: #3D5872;
+    background-color: transparent;
+    font-size: 16px;
+    position: relative;
+    left: -5px;
+    
+  }
+  .login-form select:focus{
+    outline: none;
+  }
+  .container button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: -50px;
+    right: -115px;
+    color: #3D5872;
+    font-weight: 600;
+  }
+  .containerTotal span{
+    text-align: center;
+    font-weight: 800;
+    color: #17273D;
+  }
+  
