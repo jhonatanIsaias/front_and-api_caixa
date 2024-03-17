@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import TelaCadastro from '~/telaCadastro/telaCadastro';
 import FormLogin from '~/telaLogin/formLogin';
 import TelaBusca from '~/telaBuscaPeriodo/telaBusca';
@@ -12,11 +12,14 @@ import AuthProviderContext from '~/context/authContext';
 
 const Routers = () => {
     const { token } = useContext(AuthProviderContext);
+   
+
 
     return (
         <Router>
             <Routes>
                 {token === null ? (
+                
                     <>
                         <Route path='/' element={<FormLogin />} />
                         <Route path='/cadastro' element={<TelaCadastro />} />

@@ -5,7 +5,6 @@ import { faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 const barraPesquisa = () => {
   return (
     <div className='container'>
-        <input type="text" />
         <button><FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#3d5872",}} /></button>
     </div>
   )

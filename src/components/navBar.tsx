@@ -6,7 +6,7 @@ const navBar = () => {
             <nav className='navbar-container'>
                 <ul className="navbar-items">
                     <li>
-                        <Link to='/cadastrarentrada'>Cadastrar Entrada</Link>
+                        <Link to='/'>Cadastrar Entrada</Link>
                     </li>
                     <li>
                         <Link to='/cadastrarsaida'>Cadastrar Saída</Link>

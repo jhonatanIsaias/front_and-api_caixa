@@ -31,6 +31,9 @@ const FormLogin = () => {
       console.log(responseToken.token);
      await localStorage.setItem('token',responseToken.token);
      await localStorage.setItem('company_id',responseToken.company_id);
+     await localStorage.setItem('name',responseToken.name);
+     await localStorage.setItem('cnpj',responseToken.cnpj);
+
      window.location.reload();
  
     }catch(error: any){
