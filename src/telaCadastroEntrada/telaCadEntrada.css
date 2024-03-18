@@ -65,4 +65,8 @@ body{
   .login-form input[type="submit"]:hover {
     background-color: #17273D;
   }
+  .status {
+    color:rgb(52, 212, 52);
+    
+  }
   

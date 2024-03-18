@@ -12,10 +12,16 @@ const navBar = () => {
                         <Link to='/cadastrarsaida'>Cadastrar Saída</Link>
                     </li>
                     <li>
-                        <Link to='/pesquisarentrada'>Buscar Transação</Link>
+                        <Link to='/pesquisarentrada'>Pesquisar Entradas</Link>
+                    </li>
+                    <li>
+                        <Link to='/pesquisarsaida'>Pesquisar Saidas</Link>
                     </li>
                     <li>
                         <Link to='/minhaConta'>Minha Conta</Link>
+                    </li>
+                    <li>
+                        <Link to='/buscar'>Buscar Transação</Link>
                     </li>
                 </ul>
             </nav>

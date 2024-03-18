@@ -46,13 +46,13 @@ const TelaCadEntrada = () => {
         <h2 className='title'>Cadastro de Entrada</h2>    
         <form className="login-form" onSubmit={submitEntrada} method='POST'>
         <label>Valor:</label>
-          <input type="number" name="valor" value={value} placeholder="Valor R$" onChange={e => setValue(e.target.value)} />
+          <input type="number" name="valor" value={value} required placeholder="Valor R$" onChange={e => setValue(e.target.value)} />
           <label>Descrição:</label>
-          <textarea className='description' value={description} onChange={e => setDescription(e.target.value)}></textarea>
+          <textarea className='description' value={description} required onChange={e => setDescription(e.target.value)}></textarea>
           <label>Data:</label>
-          <input type="date" name="dataTransacao" onChange={e => setDate(e.target.value)}/>
+          <input type="date" name="dataTransacao" required onChange={e => setDate(e.target.value)}/>
           <input type="submit" value="Cadastrar" />
-          <div>{status}</div>
+          <div className='status'>{status}</div>
         </form>
       </div>
       </div>

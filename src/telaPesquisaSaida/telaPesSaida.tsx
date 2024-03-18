@@ -1,52 +1,52 @@
 import React, { useState } from "react";
-import "~/telaPesquisaEntrada/telaPesEntrada.css";
+import "~/telaPesquisaSaida/telaPesSaida.css";
 import NavBar from "~/components/navBar";
 
-const TelaPesEntrada = () => {
+const TelaPesSaida = () => {
   const [mes, setMes] = useState('');
   const [ano, setAno] = useState('');
-  const [entradas, setEntradas] = useState([]);
+  const [saidas, setSaidas] = useState([]);
    const [error, setError] = useState('');
   const company_id = localStorage.getItem('company_id');
   const JWT = localStorage.getItem('token');
-  const handleEntradas = async (e: any) => {
+  const handleSaidas = async (e: any) => {
     try {
       e.preventDefault();
       
-      const response = await fetch(`http://localhost:3333/entradas/${mes}/${ano}/${company_id}`, {
+      const response = await fetch(`http://localhost:3333/saidas/${mes}/${ano}/${company_id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'authorization': `Bearer ${JWT}`,
         }
       });
-      const entradasJSON = await response.json();
-      const entradasComDatasFormatadas = entradasJSON.map(entrada => {
-        const data = new Date(entrada.date);
+      const saidasJSON = await response.json();
+      const saidasComDatasFormatadas = saidasJSON.map(saida => {
+        const data = new Date(saida.date);
         const formattedData = `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`;
-      
+     
         return {
-          ...entrada,
+          ...saida,
           date: formattedData
         };
       });
 
-      setEntradas(entradasComDatasFormatadas);
+      setSaidas(saidasComDatasFormatadas);
       setError('');
 
       //window.location.reload();
 
     } catch (error: any) {
-      setError('nenhuma entrada encontrada');
-      setEntradas([]);
+      setError('nenhuma saida encontrada');
+      setSaidas([]);
     }
   }
   return (
     <div className="main-container">
       <NavBar></NavBar>
       <div className="form-container">
-        <h1 className="title">Entradas</h1>
-        <form className="login-form" onSubmit={handleEntradas} method="GET">
+        <h1 className="title">Saidas</h1>
+        <form className="login-form" onSubmit={handleSaidas} method="GET">
           <label htmlFor="mês">Selecione um mês:</label>
           <input type="number" id="mes" name="mes" min="01" max="12" step="01" onChange={e => setMes(e.target.value)} />
           <label htmlFor="year">Selecione um ano:</label>
@@ -56,17 +56,17 @@ const TelaPesEntrada = () => {
           }
           {
 
-            entradas.map((entrada, index) => (
+            saidas.map((saida, index) => (
 
               <div className="container" key={index}>
                 <div className="mine-container">
                   <div className="left-info">
-                    <span>entrada</span>
-                    <p>{entrada.description}</p>
+                    <span>saida</span>
+                    <p>{saida.description}</p>
                   </div>
                   <div className="right-info">
-                    <span>R$ {entrada.value}</span>
-                    <p>{entrada.date}</p>
+                    <span>R$ {saida.value}</span>
+                    <p>{saida.date}</p>
                   </div>
                 </div>
               </div>
@@ -79,4 +79,4 @@ const TelaPesEntrada = () => {
   );
 };
 
-export default TelaPesEntrada;
+export default TelaPesSaida;

@@ -6,9 +6,9 @@ import TelaBusca from '~/telaBuscaPeriodo/telaBusca';
 import TelaCadEntrada from '~/telaCadastroEntrada/telaCadEntrada';
 import TelaCadastroSaida from '~/telaCadastroSaida/telaCadastroSaida';
 import TelaPesEntrada from '~/telaPesquisaEntrada/telaPesEntrada';
-import TelaPesquisaSaida from '~/telPesquisaSaida/telaPesquisaSaida';
 import TelaConta from '~/telaConta/telaConta';
 import AuthProviderContext from '~/context/authContext';
+import TelaPesSaida from '~/telaPesquisaSaida/telaPesSaida';
 
 const Routers = () => {
     const { token } = useContext(AuthProviderContext);
@@ -30,7 +30,7 @@ const Routers = () => {
                         <Route path='/buscar' element={<TelaBusca />} />
                         <Route path='/cadastrarsaida' element={<TelaCadastroSaida />} />
                         <Route path='/pesquisarentrada' element={<TelaPesEntrada />} />
-                        <Route path='/pesquisarsaida' element={<TelaPesquisaSaida />} />
+                        <Route path='/pesquisarsaida' element={<TelaPesSaida />} />
                         <Route path='/minhaConta' element={<TelaConta />} />
                     </>
                 )}
