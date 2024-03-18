@@ -1,50 +1,129 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import './telaBusca.css'
 import NavBar from '~/components/navBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 const TelaBusca = () => {
+  const [mes, setMes] = useState('');
+  const [ano, setAno] = useState('');
+  const [somaEntrada, setSomaEntrada] = useState(0);
+  const [entradas, setEntradas] = useState([]);
+  const [somaSaida, setSomaSaida] = useState(0);
+  const [saidas, setSaidas] = useState([]);
+  
+  const company_id = localStorage.getItem('company_id');
+  const JWT = localStorage.getItem('token');
+
+  useEffect(() => {
+    setSomaEntrada(sumEntradas());
+  }, [entradas]);
+  useEffect(() => {
+    setSomaSaida(sumSaidas());
+  }, [saidas]);
+  const sumEntradas = () => {
+    let soma = 0;
+    entradas.forEach(entrada => {
+      soma += Number.parseInt(entrada.value);
+    });
+    return soma;
+  }
+  const sumSaidas = () => {
+    let soma = 0;
+    saidas.forEach(saida => {
+      soma += Number.parseInt(saida.value);
+    });
+    return soma;
+  }
+ 
+
+
+  const handleEntradas = async (e: any) => {
+    try {
+      e.preventDefault();
+
+      const response = await fetch(`http://localhost:3333/entradas/${mes}/${ano}/${company_id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${JWT}`,
+        }
+      });
+      const entradasJSON = await response.json();
+      const entradas = entradasJSON.map(entrada => {
+
+        return {
+          ...entrada,
+        };
+      });
+
+      setEntradas(entradas);
+    
+
+
+    } catch (error: any) {
+      setEntradas([]);
+    }
+  }
+
+  const handleSaidas = async (e: any) => {
+    try {
+      e.preventDefault();
+      
+      const response = await fetch(`http://localhost:3333/saidas/${mes}/${ano}/${company_id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${JWT}`,
+        }
+      });
+      const saidasJSON = await response.json();
+      const saidas= saidasJSON.map(saida => {
+       
+        return {
+          ...saida,
+        };
+      });
+
+      setSaidas(saidas);
+      setError('');
+
+
+    } catch (error: any) {
+      setError('nenhuma saida encontrada');
+      setSaidas([]);
+    }
+  }
   return (
     <div className="main-container">
-       <NavBar></NavBar>
-       <div className="form-container">
+      <NavBar></NavBar>
+      <div className="form-container">
         <h1 className='title'>Transações</h1>
-        <form className="login-form">
-            <span>Período</span>
-            <select>
-              <option value="marco2024">Março/2024</option>
-              <option value="abril2024">Abril/2024</option>
-              <option value="maio2024">Maio/2024</option>
-              <option value="junho2024">Junho/2024</option>
-              <option value="julho2024">Julho/2024</option>
-              <option value="agosto2024">Agosto/2024</option>
-              <option value="setembro2024">Setembro/2024</option>
-              <option value="outubro2024">Outubro/2024</option>
-              <option value="novembro2024">Novembro/2024</option>
-              <option value="dezembro2024">Dezembro/2024</option>
-              <option value="janeiro2025">Janeiro/2025</option>
-              <option value="fevereiro2025">Fevereiro/2025</option>
-            </select>
+        <form className="login-form" method="GET">
+          <span>Período</span>
+          <label htmlFor="mês">Selecione um mês:</label>
+          <input type="number" id="mes" name="mes" min="01" max="12" step="01" onChange={e => setMes(e.target.value)} />
+          <label htmlFor="year">Selecione um ano:</label>
+          <input type="number" id="ano" name="ano" min="2024" max="2100" step="1" onChange={e => setAno(e.target.value)} />
           <div className="container">
-              <span>Quanto entrou</span>
-              <span>R$ 0,00</span>
-              <button><FontAwesomeIcon icon={faArrowRight} style={{color: "#3d5872",}} /></button>
+            <span>Quanto entrou:</span>
+            <span>R$ {somaEntrada},00</span>
+            <button onClick={handleEntradas}><FontAwesomeIcon icon={faArrowRight} style={{ color: "#3d5872", }} /></button>
           </div>
           <div className="container">
-              <span>Quanto saiu</span>
-              <span>R$ 0,00</span>
-              <button><FontAwesomeIcon icon={faArrowRight} style={{color: "#3d5872",}} /></button>
+            <span>Quanto saiu</span>
+            <span>R$ {somaSaida},00</span>
+            <button onClick={handleSaidas}><FontAwesomeIcon icon={faArrowRight} style={{ color: "#3d5872", }} /></button>
           </div>
           <div>
-            <button className='btn'>Gerar Planilha</button>
+            <button className='btn' type="submit" >Gerar Planilha</button>
           </div>
           <div className="containerTotal">
-              <span>TOTAL</span>
-              <span>R$ 0,00</span>
+            <span>TOTAL</span>
+            <span>R$ {somaEntrada - somaSaida},00</span>
           </div>
         </form>
       </div>
-      </div>
+    </div>
   )
 }
 

@@ -18,11 +18,12 @@ const navBar = () => {
                         <Link to='/pesquisarsaida'>Pesquisar Saidas</Link>
                     </li>
                     <li>
-                        <Link to='/minhaConta'>Minha Conta</Link>
-                    </li>
-                    <li>
                         <Link to='/buscar'>Buscar Transação</Link>
                     </li>
+                    <li>
+                        <Link to='/minhaConta'>Minha Conta</Link>
+                    </li>
+                   
                 </ul>
             </nav>
   )
