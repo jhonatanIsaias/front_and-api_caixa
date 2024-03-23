@@ -3,6 +3,8 @@ import './telaBusca.css'
 import NavBar from '~/components/navBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate, useNavigation } from "react-router-dom";
+import axios from "axios";
 const TelaBusca = () => {
   const [mes, setMes] = useState('');
   const [ano, setAno] = useState('');
@@ -85,14 +87,38 @@ const TelaBusca = () => {
       });
 
       setSaidas(saidas);
-      setError('');
+      
 
 
     } catch (error: any) {
-      setError('nenhuma saida encontrada');
+    
       setSaidas([]);
     }
   }
+  
+  const gerarPlanilha = async (e: any) => {
+    e.preventDefault();
+    try {
+      const axiosConfig = {
+       headers: {
+        'authorization': `Bearer ${JWT}`,
+       },
+       responseType: 'arraybuffer' ,
+      }
+
+     
+     const response = await axios.get(`http://localhost:3333/gerar-planilha/${mes}/${ano}/${company_id}`,axiosConfig);
+     const url = window.URL.createObjectURL(new Blob([response.data]), { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+     const link = document.createElement('a');
+     link.href = url;
+     link.setAttribute('download',`planilha${mes}-${ano}.xlsx`);
+     document.body.appendChild(link);
+     link.click();
+
+    } catch (error) {
+      console.error('Erro ao gerar planilha:', error.message);
+    }
+  };
   return (
     <div className="main-container">
       <NavBar></NavBar>
@@ -115,7 +141,7 @@ const TelaBusca = () => {
             <button onClick={handleSaidas}><FontAwesomeIcon icon={faArrowRight} style={{ color: "#3d5872", }} /></button>
           </div>
           <div>
-            <button className='btn' type="submit" >Gerar Planilha</button>
+            <button className='btn' onClick={gerarPlanilha} >Gerar Planilha</button>
           </div>
           <div className="containerTotal">
             <span>TOTAL</span>
