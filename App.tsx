@@ -1,6 +1,6 @@
 
 import Routers from "~/router/routers";
-import 'App.css';
+import './App.css';
 
 function App() {
   return (
