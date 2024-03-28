@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cnpj } from 'cpf-cnpj-validator';
 
+
 const TelaCadastro = () => {
   const [name, setName] = useState('');
   const [cnpjClient, setCnpj] = useState('');

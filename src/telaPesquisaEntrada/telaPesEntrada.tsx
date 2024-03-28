@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "~/telaPesquisaEntrada/telaPesEntrada.css";
 import NavBar from "~/components/navBar";
 
+
 const TelaPesEntrada = () => {
   const [mes, setMes] = useState('');
   const [ano, setAno] = useState('');

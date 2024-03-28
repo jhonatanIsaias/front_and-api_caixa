@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '~/telaConta/telaConta.css'
 import NavBar from '~/components/navBar'
 import { useNavigate } from 'react-router-dom';
+
 const TelaConta = () => {
   const name = localStorage.getItem('name');
   const cnpj = localStorage.getItem('cnpj');
