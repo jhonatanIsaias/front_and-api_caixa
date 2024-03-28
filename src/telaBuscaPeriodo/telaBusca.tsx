@@ -15,7 +15,7 @@ const TelaBusca = () => {
   const [somaSaida, setSomaSaida] = useState(0);
   const [saidas, setSaidas] = useState([]);
 
-  const endereco = process.env.ENDERECO;
+  
   
   const company_id = localStorage.getItem('company_id');
   const JWT = localStorage.getItem('token');
@@ -47,7 +47,7 @@ const TelaBusca = () => {
     try {
       e.preventDefault();
 
-      const response = await fetch(`http://${endereco}/entradas/${mes}/${ano}/${company_id}`, {
+      const response = await fetch(`http://54.233.235.92/entradas/${mes}/${ano}/${company_id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
