@@ -3,7 +3,6 @@ import './telaBusca.css'
 import NavBar from '~/components/navBar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate, useNavigation } from "react-router-dom";
 import axios from "axios";
 const TelaBusca = () => {
   const [mes, setMes] = useState('');
@@ -43,7 +42,7 @@ const TelaBusca = () => {
     try {
       e.preventDefault();
 
-      const response = await fetch(`http://localhost:3333/entradas/${mes}/${ano}/${company_id}`, {
+      const response = await fetch(`http://54.233.235.92:3333/entradas/${mes}/${ano}/${company_id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +70,7 @@ const TelaBusca = () => {
     try {
       e.preventDefault();
       
-      const response = await fetch(`http://localhost:3333/saidas/${mes}/${ano}/${company_id}`, {
+      const response = await fetch(`http://54.233.235.92:3333/saidas/${mes}/${ano}/${company_id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -107,7 +106,7 @@ const TelaBusca = () => {
       }
 
      
-     const response = await axios.get(`http://localhost:3333/gerar-planilha/${mes}/${ano}/${company_id}`,axiosConfig);
+     const response = await axios.get(`http://54.233.235.92:3333/gerar-planilha/${mes}/${ano}/${company_id}`,axiosConfig);
      const url = window.URL.createObjectURL(new Blob([response.data]), { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
      const link = document.createElement('a');
      link.href = url;

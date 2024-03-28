@@ -20,7 +20,7 @@ const FormLogin = () => {
   const handleForm = async (e: any) => {
     try{
       e.preventDefault();
-      const response = await fetch('http://localhost:3333/login',{
+      const response = await fetch('http://54.233.235.92:3333/login',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -23,7 +23,7 @@ const TelaCadastroSaida = () => {
     try{
     
       e.preventDefault();
-      const response = await fetch('http://localhost:3333/saidas',{
+      const response = await fetch('http://54.233.235.92:3333/saidas',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json',

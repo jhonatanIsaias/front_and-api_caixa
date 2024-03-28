@@ -20,7 +20,7 @@ const TelaCadEntrada = () => {
     try{
     
       e.preventDefault();
-      const response = await fetch('http://localhost:3333/entradas',{
+      const response = await fetch('http://54.233.235.92:3333/entradas',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json',
