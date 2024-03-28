@@ -47,7 +47,7 @@ const TelaBusca = () => {
     try {
       e.preventDefault();
 
-      const response = await fetch(`http://54.233.235.92/entradas/${mes}/${ano}/${company_id}`, {
+      const response = await fetch(`http://54.233.235.92:3333/entradas/${mes}/${ano}/${company_id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
